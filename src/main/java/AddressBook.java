@@ -17,8 +17,13 @@ public class AddressBook {
         return contacts;
     }
 
-    public void addContact(ContactPerson contact) {
+    public boolean addContact(ContactPerson contact) {
+        boolean alreadyExists = contacts.stream().anyMatch(existing -> existing.equals(contact));
+        if (alreadyExists) {
+            return false;
+        }
         contacts.add(contact);
+        return true;
     }
 
     public ContactPerson findContact(String firstName, String lastName) {

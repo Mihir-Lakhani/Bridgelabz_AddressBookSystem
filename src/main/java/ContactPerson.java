@@ -1,3 +1,6 @@
+import java.util.Locale;
+import java.util.Objects;
+
 public class ContactPerson {
     private String firstName;
     private String lastName;
@@ -39,5 +42,19 @@ public class ContactPerson {
         zip = contact.zip;
         phoneNumber = contact.phoneNumber;
         email = contact.email;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof ContactPerson)) return false;
+        ContactPerson contact = (ContactPerson) other;
+        return firstName.equalsIgnoreCase(contact.firstName)
+                && lastName.equalsIgnoreCase(contact.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName.toLowerCase(Locale.ROOT), lastName.toLowerCase(Locale.ROOT));
     }
 }
