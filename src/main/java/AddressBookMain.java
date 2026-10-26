@@ -1,6 +1,12 @@
 import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class AddressBookMain {
+    private static final Path CONTACTS_FILE = Paths.get("addressbook.txt");
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Address Book Program");
@@ -26,6 +32,8 @@ public class AddressBookMain {
             System.out.println("14. Sort contacts by city");
             System.out.println("15. Sort contacts by state");
             System.out.println("16. Sort contacts by ZIP");
+            System.out.println("17. Save contacts to file");
+            System.out.println("18. Read contacts from file");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -118,6 +126,24 @@ public class AddressBookMain {
             } else if (choice.equals("16")) {
                 for (ContactPerson contact : addressBook.getContactsSortedByZip()) {
                     System.out.println(contact);
+                }
+            } else if (choice.equals("17")) {
+                try {
+                    AddressBookFileIO.writeContacts(addressBook.getContacts(), CONTACTS_FILE);
+                    System.out.println("Contacts saved to " + CONTACTS_FILE.toAbsolutePath());
+                } catch (IOException e) {
+                    System.out.println("Could not save contacts: " + e.getMessage());
+                }
+            } else if (choice.equals("18")) {
+                try {
+                    List<ContactPerson> loadedContacts = AddressBookFileIO.readContacts(CONTACTS_FILE);
+                    addressBook.getContacts().clear();
+                    for (ContactPerson contact : loadedContacts) {
+                        addressBook.addContact(contact);
+                    }
+                    System.out.println("Contacts loaded from " + CONTACTS_FILE.toAbsolutePath());
+                } catch (IOException e) {
+                    System.out.println("Could not read contacts: " + e.getMessage());
                 }
             } else {
                 System.out.println("Invalid option.");
