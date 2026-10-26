@@ -54,6 +54,14 @@ public class AddressBookSystem {
                 .collect(Collectors.toList());
     }
 
+    public long countContactsInCity(String city) {
+        return searchByCity(city).stream().count();
+    }
+
+    public long countContactsInState(String state) {
+        return searchByState(state).stream().count();
+    }
+
     private void updateCityAndStateDictionaries() {
         List<ContactPerson> allContacts = addressBooks.values().stream()
                 .flatMap(addressBook -> addressBook.getContacts().stream())
