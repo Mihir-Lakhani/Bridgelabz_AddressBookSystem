@@ -5,12 +5,17 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Address Book Program");
 
-        AddressBook addressBook = new AddressBook("My Address Book");
+        AddressBookSystem system = new AddressBookSystem();
+        system.addAddressBook("My Address Book");
+        AddressBook addressBook = system.getAddressBook("My Address Book");
         while (true) {
+            System.out.println("Current Address Book: " + addressBook.getName());
             System.out.println("1. Add contact");
             System.out.println("2. Edit contact");
             System.out.println("3. Delete contact");
             System.out.println("4. View all contacts");
+            System.out.println("5. Add an Address Book");
+            System.out.println("6. Select an Address Book");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -48,6 +53,24 @@ public class AddressBookMain {
                             + " | " + contact.getAddress() + " | " + contact.getCity()
                             + " | " + contact.getState() + " | " + contact.getZip()
                             + " | " + contact.getPhoneNumber() + " | " + contact.getEmail());
+                }
+            } else if (choice.equals("5")) {
+                System.out.print("New Address Book name: ");
+                String name = scanner.nextLine();
+                if (system.addAddressBook(name)) {
+                    System.out.println("Address Book added.");
+                } else {
+                    System.out.println("An Address Book with that name already exists.");
+                }
+            } else if (choice.equals("6")) {
+                System.out.println("Address Books: " + system.getAddressBooks().keySet());
+                System.out.print("Name to select: ");
+                String name = scanner.nextLine();
+                AddressBook selectedBook = system.getAddressBook(name);
+                if (selectedBook == null) {
+                    System.out.println("Address Book not found.");
+                } else {
+                    addressBook = selectedBook;
                 }
             } else {
                 System.out.println("Invalid option.");
