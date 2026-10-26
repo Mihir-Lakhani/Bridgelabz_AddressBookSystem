@@ -23,6 +23,9 @@ public class AddressBookMain {
             System.out.println("11. Count contacts in a city");
             System.out.println("12. Count contacts in a state");
             System.out.println("13. Sort contacts by name");
+            System.out.println("14. Sort contacts by city");
+            System.out.println("15. Sort contacts by state");
+            System.out.println("16. Sort contacts by ZIP");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -102,6 +105,18 @@ public class AddressBookMain {
                 System.out.println("Contact count: " + system.countContactsInState(scanner.nextLine()));
             } else if (choice.equals("13")) {
                 for (ContactPerson contact : addressBook.getContactsSortedByName()) {
+                    System.out.println(contact);
+                }
+            } else if (choice.equals("14")) {
+                for (ContactPerson contact : addressBook.getContactsSortedByCity()) {
+                    System.out.println(contact);
+                }
+            } else if (choice.equals("15")) {
+                for (ContactPerson contact : addressBook.getContactsSortedByState()) {
+                    System.out.println(contact);
+                }
+            } else if (choice.equals("16")) {
+                for (ContactPerson contact : addressBook.getContactsSortedByZip()) {
                     System.out.println(contact);
                 }
             } else {

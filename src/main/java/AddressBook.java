@@ -62,4 +62,22 @@ public class AddressBook {
                         .thenComparing(ContactPerson::getLastName, String.CASE_INSENSITIVE_ORDER))
                 .collect(Collectors.toList());
     }
+
+    public List<ContactPerson> getContactsSortedByCity() {
+        return contacts.stream()
+                .sorted(Comparator.comparing(ContactPerson::getCity, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+
+    public List<ContactPerson> getContactsSortedByState() {
+        return contacts.stream()
+                .sorted(Comparator.comparing(ContactPerson::getState, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+
+    public List<ContactPerson> getContactsSortedByZip() {
+        return contacts.stream()
+                .sorted(Comparator.comparing(ContactPerson::getZip))
+                .collect(Collectors.toList());
+    }
 }
