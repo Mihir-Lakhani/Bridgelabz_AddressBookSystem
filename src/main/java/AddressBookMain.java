@@ -6,10 +6,34 @@ public class AddressBookMain {
         System.out.println("Welcome to Address Book Program");
 
         AddressBook addressBook = new AddressBook("My Address Book");
-        System.out.println("Enter contact details:");
-        ContactPerson contact = readContact(scanner);
-        addressBook.addContact(contact);
-        System.out.println("Contact added to " + addressBook.getName());
+        while (true) {
+            System.out.println("1. Add contact");
+            System.out.println("2. Edit contact");
+            System.out.println("0. Exit");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("1")) {
+                addressBook.addContact(readContact(scanner));
+                System.out.println("Contact added to " + addressBook.getName());
+            } else if (choice.equals("2")) {
+                System.out.print("First name of contact to edit: ");
+                String firstName = scanner.nextLine();
+                System.out.print("Last name of contact to edit: ");
+                String lastName = scanner.nextLine();
+                System.out.println("Enter the updated contact details:");
+                ContactPerson updatedContact = readContact(scanner);
+                if (addressBook.editContact(firstName, lastName, updatedContact)) {
+                    System.out.println("Contact updated.");
+                } else {
+                    System.out.println("Contact not found.");
+                }
+            } else if (choice.equals("0")) {
+                break;
+            } else {
+                System.out.println("Invalid option.");
+            }
+        }
 
         scanner.close();
     }
