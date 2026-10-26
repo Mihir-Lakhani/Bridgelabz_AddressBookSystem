@@ -9,6 +9,7 @@ public class AddressBookMain {
         while (true) {
             System.out.println("1. Add contact");
             System.out.println("2. Edit contact");
+            System.out.println("3. Delete contact");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -30,6 +31,16 @@ public class AddressBookMain {
                 }
             } else if (choice.equals("0")) {
                 break;
+            } else if (choice.equals("3")) {
+                System.out.print("First name of contact to delete: ");
+                String firstName = scanner.nextLine();
+                System.out.print("Last name of contact to delete: ");
+                String lastName = scanner.nextLine();
+                if (addressBook.deleteContact(firstName, lastName)) {
+                    System.out.println("Contact deleted.");
+                } else {
+                    System.out.println("Contact not found.");
+                }
             } else {
                 System.out.println("Invalid option.");
             }

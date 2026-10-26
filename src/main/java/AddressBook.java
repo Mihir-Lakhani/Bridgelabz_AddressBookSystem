@@ -39,4 +39,13 @@ public class AddressBook {
         contact.updateFrom(updatedContact);
         return true;
     }
+
+    public boolean deleteContact(String firstName, String lastName) {
+        ContactPerson contact = findContact(firstName, lastName);
+        if (contact == null) {
+            return false;
+        }
+        contacts.remove(contact);
+        return true;
+    }
 }
