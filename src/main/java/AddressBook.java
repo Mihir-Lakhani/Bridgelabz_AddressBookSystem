@@ -20,4 +20,23 @@ public class AddressBook {
     public void addContact(ContactPerson contact) {
         contacts.add(contact);
     }
+
+    public ContactPerson findContact(String firstName, String lastName) {
+        for (ContactPerson contact : contacts) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)
+                    && contact.getLastName().equalsIgnoreCase(lastName)) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    public boolean editContact(String firstName, String lastName, ContactPerson updatedContact) {
+        ContactPerson contact = findContact(firstName, lastName);
+        if (contact == null) {
+            return false;
+        }
+        contact.updateFrom(updatedContact);
+        return true;
+    }
 }

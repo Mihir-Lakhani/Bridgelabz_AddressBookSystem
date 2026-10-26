@@ -29,4 +29,15 @@ public class ContactPerson {
     public String getZip() { return zip; }
     public String getPhoneNumber() { return phoneNumber; }
     public String getEmail() { return email; }
+
+    public void updateFrom(ContactPerson contact) {
+        firstName = contact.firstName;
+        lastName = contact.lastName;
+        address = contact.address;
+        city = contact.city;
+        state = contact.state;
+        zip = contact.zip;
+        phoneNumber = contact.phoneNumber;
+        email = contact.email;
+    }
 }
