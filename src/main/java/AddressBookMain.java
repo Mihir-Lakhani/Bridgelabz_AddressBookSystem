@@ -16,6 +16,8 @@ public class AddressBookMain {
             System.out.println("4. View all contacts");
             System.out.println("5. Add an Address Book");
             System.out.println("6. Select an Address Book");
+            System.out.println("7. Search all Address Books by city");
+            System.out.println("8. Search all Address Books by state");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -75,6 +77,12 @@ public class AddressBookMain {
                 } else {
                     addressBook = selectedBook;
                 }
+            } else if (choice.equals("7")) {
+                System.out.print("City to search: ");
+                printContacts(system.searchByCity(scanner.nextLine()));
+            } else if (choice.equals("8")) {
+                System.out.print("State to search: ");
+                printContacts(system.searchByState(scanner.nextLine()));
             } else {
                 System.out.println("Invalid option.");
             }
@@ -102,5 +110,15 @@ public class AddressBookMain {
         String email = scanner.nextLine();
 
         return new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
+    }
+
+    private static void printContacts(java.util.List<ContactPerson> contacts) {
+        for (ContactPerson contact : contacts) {
+            System.out.println(contact.getFirstName() + " " + contact.getLastName()
+                    + " | " + contact.getCity() + " | " + contact.getState());
+        }
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts found.");
+        }
     }
 }
