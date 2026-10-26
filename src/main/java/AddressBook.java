@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     private final String name;
@@ -52,5 +54,12 @@ public class AddressBook {
         }
         contacts.remove(contact);
         return true;
+    }
+
+    public List<ContactPerson> getContactsSortedByName() {
+        return contacts.stream()
+                .sorted(Comparator.comparing(ContactPerson::getFirstName, String.CASE_INSENSITIVE_ORDER)
+                        .thenComparing(ContactPerson::getLastName, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
     }
 }

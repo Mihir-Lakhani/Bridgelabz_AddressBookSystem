@@ -57,4 +57,10 @@ public class ContactPerson {
     public int hashCode() {
         return Objects.hash(firstName.toLowerCase(Locale.ROOT), lastName.toLowerCase(Locale.ROOT));
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " | " + address + " | " + city + " | "
+                + state + " | " + zip + " | " + phoneNumber + " | " + email;
+    }
 }
