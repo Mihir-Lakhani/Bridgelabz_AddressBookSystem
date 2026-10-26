@@ -21,8 +21,11 @@ public class AddressBookMain {
             String choice = scanner.nextLine();
 
             if (choice.equals("1")) {
-                addressBook.addContact(readContact(scanner));
-                System.out.println("Contact added to " + addressBook.getName());
+                if (addressBook.addContact(readContact(scanner))) {
+                    System.out.println("Contact added to " + addressBook.getName());
+                } else {
+                    System.out.println("A contact with that name already exists in this Address Book.");
+                }
             } else if (choice.equals("2")) {
                 System.out.print("First name of contact to edit: ");
                 String firstName = scanner.nextLine();
