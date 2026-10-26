@@ -10,6 +10,7 @@ public class AddressBookMain {
             System.out.println("1. Add contact");
             System.out.println("2. Edit contact");
             System.out.println("3. Delete contact");
+            System.out.println("4. View all contacts");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -40,6 +41,13 @@ public class AddressBookMain {
                     System.out.println("Contact deleted.");
                 } else {
                     System.out.println("Contact not found.");
+                }
+            } else if (choice.equals("4")) {
+                for (ContactPerson contact : addressBook.getContacts()) {
+                    System.out.println(contact.getFirstName() + " " + contact.getLastName()
+                            + " | " + contact.getAddress() + " | " + contact.getCity()
+                            + " | " + contact.getState() + " | " + contact.getZip()
+                            + " | " + contact.getPhoneNumber() + " | " + contact.getEmail());
                 }
             } else {
                 System.out.println("Invalid option.");
