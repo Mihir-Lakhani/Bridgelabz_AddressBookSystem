@@ -18,6 +18,8 @@ public class AddressBookMain {
             System.out.println("6. Select an Address Book");
             System.out.println("7. Search all Address Books by city");
             System.out.println("8. Search all Address Books by state");
+            System.out.println("9. View all contacts in a city");
+            System.out.println("10. View all contacts in a state");
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
@@ -83,6 +85,12 @@ public class AddressBookMain {
             } else if (choice.equals("8")) {
                 System.out.print("State to search: ");
                 printContacts(system.searchByState(scanner.nextLine()));
+            } else if (choice.equals("9")) {
+                System.out.print("City: ");
+                printContacts(system.getContactsInCity(scanner.nextLine()));
+            } else if (choice.equals("10")) {
+                System.out.print("State: ");
+                printContacts(system.getContactsInState(scanner.nextLine()));
             } else {
                 System.out.println("Invalid option.");
             }
